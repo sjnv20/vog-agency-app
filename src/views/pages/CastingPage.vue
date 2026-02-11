@@ -87,7 +87,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 
 import CustomRangeDatePicker from '@/components/CustomDatepicker.vue'
-import CustomDropDown from '@/components/CustomDropDown.vue'
+import CustomDropDown from '@/components/CustomDropdown.vue'
 import emailjs from '@emailjs/browser'
 
 const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
