@@ -86,7 +86,7 @@ import { computed, ref } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 
-import CustomRangeDatePicker from '@/components/CustomDatePicker.vue'
+import CustomRangeDatePicker from '@/components/CustomDatepicker.vue'
 import CustomDropDown from '@/components/CustomDropDown.vue'
 import emailjs from '@emailjs/browser'
 
