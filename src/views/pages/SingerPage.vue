@@ -13,20 +13,18 @@
             ></SegmentBtn>
 
             <FancyBox 
-                :imgList="imgList"
+                :imgList="singerArtists"
             />
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { Swiper, SwiperSlide } from 'swiper/vue'
+import { ref, computed } from 'vue';
 
+import { ARTIST_CATEGORIES } from '@/data/artists'
 import SegmentBtn from '@/components/SegmentBtn.vue'
 import FancyBox from '@/components/FancyBox.vue'
-
-import img1 from '@/assets/images/swiperImg/경서예지.jpg'
 
 const btnNum = ref(0)
 
@@ -37,18 +35,16 @@ const btnList = ref([
     { title: '댄스', selected: false },
 ])
 
-const imgList = ref([
-    { img: img1, artist: "경서예지"},
-    { img: img1, artist: "순순희"},
-    { img: img1, artist: "경서예지" },
-    { img: img1, artist: "경서예지" },
-    { img: img1, artist: "경서예지" },
-])
-
 const onUpdateBtn = (idx) => {
   btnList.value.forEach((btn, i) => {
     btn.selected = i === idx
     btnNum.value = idx
   })
 }
+
+const singerArtists = computed(() => {
+  return ARTIST_CATEGORIES.find(
+    category => category.key === 'singer'
+  )?.artists || []
+})
 </script>

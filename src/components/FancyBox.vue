@@ -4,13 +4,17 @@
       v-for="(img, idx) in imgList"
       :key="idx"
       :href="img"
-      data-fancybox="gallery"
       class="artist-card"
     >
         <div class="img-box">
-            <img :src="img.img" />
+          <a 
+            :href="img.img" 
+            data-fancybox="gallery"
+            :data-caption="img.name">
+            <img :src="img.img" loading="lazy"/>
+          </a>
         </div>
-        <span class="artist-name">{{ img.artist }}</span>
+        <span class="artist-name">{{ img.name }}</span>
     </a>
   </div>
 </template>
