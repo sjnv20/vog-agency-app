@@ -69,6 +69,8 @@ const onScroll = () => {
 }
 
 onMounted(() => {
+  window.scrollTo({ top: 0 })
+  emit('update-header', false)
   window.addEventListener('scroll', onScroll)
 })
 
