@@ -1,5 +1,5 @@
 
-
+/* main-header */
 .main-header {
   @apply w-full bg-[#ffffff] h-[56px] px-[20px] py-[12px] flex justify-between fixed z-10 top-0;
 }
@@ -37,7 +37,7 @@
 }
 .main-container .top-section {
   @apply px-[24px] pt-[88px] h-[830px] bg-[#0E1114] bg-no-repeat bg-[length:300px] bg-[position:50%_64%] relative flex flex-col items-center;
-  background-image: url(../images/순순희메인1.png)
+  background-image: url(/images/순순희메인1.png)
 }
 .main-container .top-section .title {
   @apply text-[#ffffff] text-[40px] leading-[56px] font-bold w-full;
