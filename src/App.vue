@@ -9,12 +9,14 @@
       :open="isSidebarOpen"
       @close="closeSidebar"
     />
-    <router-view v-slot="{ Component }">
-      <component
-        :is="Component"
-        @update-header="isHeaderWhite = $event"
-      />
-    </router-view>
+    <div class="min-h-[100vh]">
+      <router-view v-slot="{ Component }">
+        <component
+          :is="Component"
+          @update-header="isHeaderWhite = $event"
+        />
+      </router-view>
+    </div>
     <AppFooter />
 
   </div>

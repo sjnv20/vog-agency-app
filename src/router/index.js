@@ -21,11 +21,6 @@ const router = createRouter({
       name: 'CastingPage',
       component: () => import('../views/pages/CastingPage.vue')
     },
-    // {
-    //   path: '/artist',
-    //   name: 'ArtistListPage',
-    //   component: () => import('../views/pages/ArtistListPage.vue')
-    // },
     {
       path: '/artist/singer',
       name: 'SingerPage',
@@ -36,7 +31,15 @@ const router = createRouter({
       name: 'ModeratorPage',
       component: () => import('../views/pages/ModeratorPage.vue')
     },
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    // 뒤로가기
+    if (savedPosition) {
+      return savedPosition
+    }
+    // 기본: 항상 맨 위
+    return { top: 0 }
+  }
 })
 
 export default router

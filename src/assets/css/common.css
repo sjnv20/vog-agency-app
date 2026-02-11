@@ -1,7 +1,5 @@
 
 
-/* .layout { @apply min-h-[100vh] flex flex-col;} */
-
 .main-header {
   @apply w-full bg-[#ffffff] h-[56px] px-[20px] py-[12px] flex justify-between fixed z-10 top-0;
 }
@@ -34,9 +32,9 @@
 .main-footer { @apply bg-[#0E1114] py-6 px-6 w-full;}
 .main-footer p {@apply text-[#9AA0A6] text-[12px] leading-[28px];}
 
-/* .main-container {
-  @apply h-[100vh] overflow-y-auto;
-} */
+.main-container {
+  @apply min-h-full;
+}
 .main-container .top-section {
   @apply px-[24px] pt-[88px] h-[830px] bg-[#0E1114] bg-no-repeat bg-[length:300px] bg-[position:50%_64%] relative flex flex-col items-center;
   background-image: url(../images/순순희메인1.png)
