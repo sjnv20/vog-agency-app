@@ -21,11 +21,11 @@
         <div class="body-section">
             <p class="title">섭외 추천 아티스트</p>
             <div
-                v-for="(category, idx) in ARTIST_CATEGORIES"
+                v-for="(category, idx) in shownCategories"
                 :key="category.key"
                 class="category"
                 :class="{ '!mt-[56px]': idx === 1}"
-                @click="clickCategory(idx)"
+                @click="clickCategory(category.key)"
                 >
                 <div class="sub-title">
                     <span>{{ category.title }}</span>
@@ -41,7 +41,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router'
 import { onMounted, onUnmounted } from 'vue'
 
@@ -50,12 +50,21 @@ import ArtistSwiper from '@/components/ArtistSwiper.vue'
 
 const router = useRouter()
 
-const clickCategory = (idx) => {
-    if (idx === 0) {
-        router.push('/artist/singer')
-    } else {
-        router.push('/artist/moderator')
-    }
+const shownCategories = computed(() =>
+  ARTIST_CATEGORIES.filter(category =>
+    category.key === 'singer' || category.key === 'comedian'
+  )
+)
+
+const clickCategory = (categoryKey) => {
+  if (categoryKey === 'singer') {
+    router.push('/artist/singer')
+    return
+  }
+  if (categoryKey === 'comedian') {
+    router.push('/artist/moderator')
+    return
+  }
 }
 
 const goToCasting = () => {

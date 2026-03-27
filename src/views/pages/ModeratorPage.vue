@@ -12,9 +12,7 @@
                 @update:btnNum="onUpdateBtn"
             ></SegmentBtn>
 
-            <FancyBox 
-                :imgList="moderatorArtists"
-            />
+            <FancyBox :imgList="selectedArtists" />
         </div>
     </div>
 </template>
@@ -29,16 +27,9 @@ import FancyBox from '@/components/FancyBox.vue'
 const btnNum = ref(0)
 
 const btnList = ref([
-    { title: '개그맨', selected: true },
-    { title: '아나운서', selected: false },
-    { title: '배우', selected: false },
+    { title: '코미디언', selected: true },
+    { title: 'MC', selected: false },
 ])
-
-const moderatorArtists = computed(() => {
-  return ARTIST_CATEGORIES.find(
-    category => category.key === 'mc'
-  )?.artists || []
-})
 
 const onUpdateBtn = (idx) => {
   btnList.value.forEach((btn, i) => {
@@ -46,4 +37,14 @@ const onUpdateBtn = (idx) => {
     btnNum.value = idx
   })
 }
+
+const CATEGORY_KEY_BY_TAB_INDEX = {
+  0: 'comedian',
+  1: 'mc',
+}
+
+const selectedArtists = computed(() => {
+  const key = CATEGORY_KEY_BY_TAB_INDEX[btnNum.value]
+  return ARTIST_CATEGORIES.find(category => category.key === key)?.artists || []
+})
 </script>

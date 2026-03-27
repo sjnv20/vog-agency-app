@@ -10,12 +10,10 @@ import 'animate.css'
 import 'swiper/css'
 import 'v-calendar/style.css'
 
-
 import '@/assets/fonts/font.css'
 import '@/assets/css/_reset.css'
 import '@/assets/css/_input.css'
 import '@fancyapps/ui/dist/fancybox/fancybox.css'
-
 
 const app = createApp(App)
 

@@ -18,7 +18,6 @@
     <div 
         class="calendar-box" 
         v-show="isDatepickerOpen" 
-        v-click-outside="closeDatePicker"
     >
       <VDatePicker 
         v-model.range="range" 

@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  color-scheme: light;
+}
+* {
+  @apply box-border font-['Noto_Sans'] outline-none;
+}
 
 /* main-header */
 .main-header {
@@ -85,6 +93,12 @@
 .content.artist .title { @apply inline-block text-[24px] w-full leading-[38px] text-[#0E1114] font-bold}
 .content.artist .box { @apply mb-11 w-full text-[14px] text-[rgb(177,181,184)] leading-[21px]}
 
+@media (min-width: 721px) {
+  .content.artist .artist-list {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
 /* common */
 .dot::before { @apply content-['*'] top-0 pl-1 absolute w-[18px] h-[18px] text-[18px] text-[#d22d27] }
 .hyphen { @apply text-[#78797E];}
@@ -111,15 +125,17 @@
 .custom-input { @apply h-[38px] border-[1px] border-solid rounded-[8px] border-[#ECF0F4] px-[12px] py-[8px] text-[14px] w-full;}
 .custom-input:focus { @apply border-[#332F2F] border-solid border-[1px];}
 input.custom-input:focus-visible { @apply outline-none; }
+input.custom-input::placeholder { @apply text-[rgb(rgb(211_215_218))] text-[14px];} 
 
 .row-content-wrap { @apply flex items-center gap-2}
 
 /* date */
 .input-group { @apply w-full cursor-pointer;}
-.datepicker-wrap {@apply relative;}
+.datepicker-wrap { @apply relative; }
+.datepicker-wrap .calendar-box { @apply rounded-lg;}
 .custom-input-date { @apply w-full relative cursor-pointer inline-block; }
-.custom-input-date > .custom_input {@apply pr-[35px] cursor-pointer;}
-.custom-input-date > i { @apply absolute right-2 text-[#CFD2D8] text-[14px] top-[9px];}
+.custom-input-date > .custom-input { @apply pr-[35px] cursor-pointer; }
+.custom-input-date > i { @apply absolute right-2 text-[#CFD2D8] text-[18px] top-[9px]; }
 
 
 /* 드롭다운 */
@@ -192,3 +208,20 @@ input.custom-input:focus-visible { @apply outline-none; }
   transform: translateY(0);
   opacity: 1;
 }
+
+/* spinner */
+.spinner-wrap { @apply fixed inset-0 z-[999] flex items-center justify-center bg-[rgba(0,0,0,0.5)]; }
+.spinner { animation: rotate 1.4s linear infinite; }
+.spinner-track { @apply stroke-[#e0e0e0]; }
+.spinner-arc {
+  stroke: #03c75a;
+  stroke-dasharray: 80, 200;
+  stroke-dashoffset: 0;
+  animation: dash 1.4s ease-in-out infinite;
+}
+/**/
+.icon-wrap { @apply flex flex-col items-center gap-[8px];}
+.icon-wrap i { @apply text-[32px] text-[#03c75a];}
+
+.divider { @apply w-[18px] h-[2px] bg-[#03c75a];}
+

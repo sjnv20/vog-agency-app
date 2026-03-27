@@ -10,7 +10,7 @@
             <div class="form-box">
                 <div class="input-wrap" :class="{ invalid: $v.name.$error }">
                     <label for="name">성함<span class="dot"></span></label>
-                    <input class="custom-input" id="name" @input="onChangeInput"/>
+                    <input type="text" class="custom-input" id="name" @input="onChangeInput" placeholder="성함"/>
                     <span class="invalid-msg" v-if="$v.name.$error">
                       <span class="icon-alert-circle"></span>{{ $v.name.$errors[0].$message }}
                     </span>
@@ -37,25 +37,37 @@
 
                 <div class="input-wrap" :class="{ invalid: $v.artist.$error }">
                     <label for="artist">희망 아티스트<span class="dot"></span></label>
-                    <input class="custom-input" id="artist" @input="onChangeInput"/>
+                    <input type="text" class="custom-input" id="artist" @input="onChangeInput" placeholder="희망 아티스트"/>
                     <span class="invalid-msg" v-if="$v.artist.$error">
                       <span class="icon-alert-circle"></span>{{ $v.artist.$errors[0].$message }}
                     </span>
                 </div>
 
                  <div class="input-wrap">
-                    <label for="date">희망 날짜<span class="dot"></span></label>
-                     <CustomRangeDatePicker
-                        :setDatePropValue="setDatePropValue"
-                        @dayClick="getDateRange"
-                    />
+                   <label for="date">희망 날짜/시간<span class="dot"></span></label>
+                    <div class="flex gap-2">
+                       <CustomRangeDatePicker
+                          class="w-full"
+                          :setDatePropValue="setDatePropValue"
+                          @dayClick="getDateRange"
+                      />
+                      <input class="custom-input max-w-[100px]" id="time" @input="onChangeInput" placeholder="희망 시간"/>
+                    </div>
                 </div>
 
                 <div class="input-wrap" :class="{ invalid: $v.region.$error }">
                     <label for="region">행사 지역<span class="dot"></span></label>
-                    <input class="custom-input" id="region" @input="onChangeInput"/>
+                    <input type="text" class="custom-input" id="region" @input="onChangeInput" placeholder="행사 지역"/>
                     <span class="invalid-msg" v-if="$v.region.$error">
                       <span class="icon-alert-circle"></span>{{ $v.region.$errors[0].$message }}
+                    </span>
+                </div>
+
+                <div class="input-wrap" :class="{ invalid: $v.budget.$error }">
+                    <label for="budget">섭외 예산<span class="dot"></span></label>
+                    <input type="text" class="custom-input" id="budget" @input="onChangeInput" placeholder="섭외 예산" />
+                    <span class="invalid-msg" v-if="$v.budget.$error">
+                      <span class="icon-alert-circle"></span>{{ $v.budget.$errors[0].$message }}
                     </span>
                 </div>
 
@@ -74,21 +86,56 @@
                     </span>
                 </div>
 
-            <button class="btn w-full mb-4" @click="checkValidation">문의하기</button>
+            <button class="btn w-full mb-4" style="background: linear-gradient(to top, #03c75a, #54f59c);" @click="checkValidation">문의하기</button>
+            <Spinner v-if="isLoading" />
+            </div>
+    
+            <div class="flex justify-between mt-6">
+              <a href="tel:01058000841">
+                <div class="icon-wrap">
+                  <i class="icon-phone"></i>
+                  <div class="divider"></div>
+                  <span class="text-[#3D3D3D]">전화 문의</span>
+                </div>
+              </a>
 
+               <a href="sms:01058000841">
+                <div class="icon-wrap">
+                  <i class="icon-message-square"></i>
+                  <div class="divider"></div>
+                  <span class="text-[#3D3D3D]">문자 문의</span>
+                </div>
+              </a>
+
+              <a href="mailto:vog.agency2026@gmail.com">
+                <div class="icon-wrap">
+                  <i class="icon-mail"></i>
+                  <div class="divider"></div>
+                  <span class="text-[#3D3D3D]">이메일 문의</span>
+                </div>
+              </a>
+
+              <a href="http://pf.kakao.com/_xhxexcxon/chat" target="_blank">
+                <div class="icon-wrap">
+                  <i class="icon-message-circle"></i>
+                  <div class="divider"></div>
+                  <span class="text-[#3D3D3D]">Talk 문의</span>
+                </div>
+              </a>
             </div>
         </div>
     </div>    
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 
 import CustomRangeDatePicker from '@/components/CustomDatepicker.vue'
 import CustomDropDown from '@/components/CustomDropdown.vue'
 import emailjs from '@emailjs/browser'
+import Spinner from '@/components/Spinner.vue'
 
 const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
 const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
@@ -101,6 +148,8 @@ const setDatePropValue = ref(today + ' ~ ' + today)
 
 const startDate = ref(today)
 const endDate = ref(today)
+
+const isLoading = ref(false)
 
 // 카테고리 드롭다운
 const isCategorySelect = ref(false)
@@ -119,6 +168,7 @@ const submitData = ref({
     artist:'',
     startDate:today,
     endDate: today,
+    time: '',
     region:'',
     category:'',
 })
@@ -144,12 +194,15 @@ const rules = computed(() => ({
     },
     category: {
         required: helpers.withMessage('행사 카테고리는 필수 입력값입니다.', required),
+    },
+    budget : {
+        required: helpers.withMessage('섭외 예산은 필수 입력값입니다.', required),
     }
 }))
 const $v = useVuelidate(rules, submitData)
 
 const submitForm = () => {
-    console.log(submitData.value)
+    isLoading.value = true
     sendEmail()
 }
 
@@ -168,7 +221,19 @@ function checkValidation() {
 
 function onChangeInput(e) {
   const { id, value } = e.target
-  submitData.value[id] = value
+  if (id === 'budget') {
+     // 숫자만 추출
+    const numericValue = value.replace(/\D/g, '')
+
+    // 데이터에는 콤마 없는 값 저장
+    submitData.value[id] = numericValue
+
+    // 화면에는 콤마 포맷
+    const formatted = numericValue ? Number(numericValue).toLocaleString() : ''
+    e.target.value = formatted
+  } else {
+    submitData.value[id] = value
+  }
 }
 
 
@@ -219,18 +284,25 @@ function sendEmail() {
       phone: submitData.value.phoneNum,
       artist: submitData.value.artist,
       date: submitData.value.startDate + '∼' + submitData.value.endDate,
+      time: submitData.value.time,
       region: submitData.value.region,
+      budget: submitData.value.budget,
       category: submitData.value.category
     },
     key
   )
   .then(() => {
     alert('메일이 전송되었습니다!')
+    isLoading.value = false
   })
   .catch(err => {
     console.error(err)
+    isLoading.value = false
   })
 }
 
+watch(() => isLoading.value, (val) => {
+  document.body.style.overflow = val ? 'hidden' : ''
+})
 
 </script>

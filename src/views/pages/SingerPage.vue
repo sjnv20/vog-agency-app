@@ -12,9 +12,7 @@
                 @update:btnNum="onUpdateBtn"
             ></SegmentBtn>
 
-            <FancyBox 
-                :imgList="singerArtists"
-            />
+            <FancyBox :imgList="selectedArtists" />
         </div>
     </div>
 </template>
@@ -42,9 +40,15 @@ const onUpdateBtn = (idx) => {
   })
 }
 
-const singerArtists = computed(() => {
-  return ARTIST_CATEGORIES.find(
-    category => category.key === 'singer'
-  )?.artists || []
+const CATEGORY_KEY_BY_TAB_INDEX = {
+  0: 'singer',
+  1: 'hiphop',
+  2: 'trot',
+  3: 'dance',
+}
+
+const selectedArtists = computed(() => {
+  const key = CATEGORY_KEY_BY_TAB_INDEX[btnNum.value]
+  return ARTIST_CATEGORIES.find(category => category.key === key)?.artists || []
 })
 </script>

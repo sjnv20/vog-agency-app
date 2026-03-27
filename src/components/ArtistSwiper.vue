@@ -3,6 +3,12 @@
         :slides-per-view="3" 
         :slides-per-group="3"
         :space-between="12" 
+        :breakpoints="{
+          721: {
+            slidesPerView: 6,
+            slidesPerGroup: 6
+          }
+        }"
         loop
         :modules="[Autoplay]"
         :autoplay="{
