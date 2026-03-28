@@ -38,7 +38,7 @@
 
             <div class="contact-grid mt-12">
                 <a 
-                    href="tel:01058000841"
+                    href="tel:01095371153"
                     class="contact-item"
                 >
                     <div class="icon-circle">
@@ -48,7 +48,7 @@
                 </a>
 
                 <a 
-                    href="sms:01058000841"
+                    href="sms:01095371153"
                     class="contact-item"
                 >
                     <div class="icon-circle">
