@@ -166,7 +166,7 @@ import comedian26 from '@/assets/images/comedian/황제성.jpg'
 export const ARTIST_CATEGORIES = [
   {
     key: 'singer',
-    title: '가수',
+    title: '발라드',
     artists: [
       { name: '순순희', img: singer1, genre: '발라드' },
       { name: '강균성(노을)', img: singer2, genre: '발라드' },

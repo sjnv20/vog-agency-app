@@ -24,7 +24,7 @@
                 v-for="(category, idx) in shownCategories"
                 :key="category.key"
                 class="category"
-                :class="{ '!mt-[56px]': idx === 1}"
+                :class="{ '!mt-[32px]': idx !== 0}"
                 @click="clickCategory(category.key)"
                 >
                 <div class="sub-title">
@@ -36,6 +36,48 @@
                 />
             </div>
 
+            <div class="contact-grid mt-12">
+                <a 
+                    href="tel:01058000841"
+                    class="contact-item"
+                >
+                    <div class="icon-circle">
+                        <i>📞</i>
+                    </div>
+                    <span>전화 문의</span>
+                </a>
+
+                <a 
+                    href="sms:01058000841"
+                    class="contact-item"
+                >
+                    <div class="icon-circle">
+                        <i>💬</i>
+                    </div>
+                    <span>문자 문의</span>
+                </a>
+
+                <a 
+                    href="mailto:vog.agency2026@gmail.com"
+                    class="contact-item"
+                >
+                    <div class="icon-circle">
+                        <i>✉️</i>
+                    </div>
+                    <span>이메일</span>
+                </a>
+
+                <a 
+                    href="http://pf.kakao.com/_xhxexcxon/chat" 
+                    target="_blank" 
+                    class="contact-item"
+                >
+                    <div class="icon-circle">
+                        <i>🗨️</i>
+                    </div>
+                    <span>Talk 문의</span>
+                </a>
+            </div>
         </div>
     </div>
 </template>
@@ -52,7 +94,7 @@ const router = useRouter()
 
 const shownCategories = computed(() =>
   ARTIST_CATEGORIES.filter(category =>
-    category.key === 'singer' || category.key === 'comedian'
+    category.key === 'singer' || category.key === 'comedian' || category.key === 'trot'
   )
 )
 

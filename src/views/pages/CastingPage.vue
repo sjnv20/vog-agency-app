@@ -90,38 +90,47 @@
             <Spinner v-if="isLoading" />
             </div>
     
-            <div class="flex justify-between mt-6">
-              <a href="tel:01058000841">
-                <div class="icon-wrap">
-                  <i class="icon-phone"></i>
-                  <div class="divider"></div>
-                  <span class="text-[#3D3D3D]">전화 문의</span>
-                </div>
-              </a>
+            <div class="contact-grid mt-12">
+                <a 
+                    href="tel:01058000841"
+                    class="contact-item"
+                >
+                    <div class="icon-circle">
+                        <i>📞</i>
+                    </div>
+                    <span>전화 문의</span>
+                </a>
 
-               <a href="sms:01058000841">
-                <div class="icon-wrap">
-                  <i class="icon-message-square"></i>
-                  <div class="divider"></div>
-                  <span class="text-[#3D3D3D]">문자 문의</span>
-                </div>
-              </a>
+                <a 
+                    href="sms:01058000841"
+                    class="contact-item"
+                >
+                    <div class="icon-circle">
+                        <i>💬</i>
+                    </div>
+                    <span>문자 문의</span>
+                </a>
 
-              <a href="mailto:vog.agency2026@gmail.com">
-                <div class="icon-wrap">
-                  <i class="icon-mail"></i>
-                  <div class="divider"></div>
-                  <span class="text-[#3D3D3D]">이메일 문의</span>
-                </div>
-              </a>
+                <a 
+                    href="mailto:vog.agency2026@gmail.com"
+                    class="contact-item"
+                >
+                    <div class="icon-circle">
+                        <i>✉️</i>
+                    </div>
+                    <span>이메일</span>
+                </a>
 
-              <a href="http://pf.kakao.com/_xhxexcxon/chat" target="_blank">
-                <div class="icon-wrap">
-                  <i class="icon-message-circle"></i>
-                  <div class="divider"></div>
-                  <span class="text-[#3D3D3D]">Talk 문의</span>
-                </div>
-              </a>
+                <a 
+                    href="http://pf.kakao.com/_xhxexcxon/chat" 
+                    target="_blank" 
+                    class="contact-item"
+                >
+                    <div class="icon-circle">
+                        <i>🗨️</i>
+                    </div>
+                    <span>Talk 문의</span>
+                </a>
             </div>
         </div>
     </div>    

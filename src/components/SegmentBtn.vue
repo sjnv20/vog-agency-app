@@ -35,9 +35,10 @@ const clickBtn = (idx) => {
 
 const indicatorStyle = computed(() => {
   const count = props.btnList.length
+  const width = `calc((100% - 12px) / ${count})`
   return {
-    width: `${100 / count }%`,
-    transform: `translateX(${props.btnNum * 100}%)`,
+    width,
+    transform: `translateX(calc(${props.btnNum * 100}% + ${props.btnNum * (8 / count)}px))`,
   }
 })
 

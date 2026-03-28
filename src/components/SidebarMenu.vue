@@ -23,7 +23,7 @@
                             class="sub-menu"
                         >
                             <a class="menu-item" href="/artist/singer">가수</a>
-                            <a class="menu-item" href="/artist/moderator">MC / 개그맨</a>
+                            <a class="menu-item" href="/artist/moderator">MC / 코미디언</a>
                         </div>
                     </transition>
                 </div>

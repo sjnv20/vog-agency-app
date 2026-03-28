@@ -64,7 +64,7 @@
   @apply rounded-full text-[18px] border-[#03c75a] border-solid border-[1px] text-[#ffffff] flex flex-col p-[20px] text-center w-[110px] h-[110px] justify-center;
 }
 .body-section {
-  @apply py-[48px] px-[24px];
+  @apply pt-[48px] px-[24px] pb-[24px];
 }
 .body-section .title {
   @apply text-[#0F172A] text-[24px] font-bold leading-[40px] text-left;
@@ -220,8 +220,17 @@ input.custom-input::placeholder { @apply text-[rgb(rgb(211_215_218))] text-[14px
   animation: dash 1.4s ease-in-out infinite;
 }
 /**/
-.icon-wrap { @apply flex flex-col items-center gap-[8px];}
-.icon-wrap i { @apply text-[32px] text-[#03c75a];}
+/* .icon-wrap { @apply flex flex-col items-center gap-[8px];} */
+/* .icon-wrap i { @apply text-[32px] text-[#03c75a];} */
 
-.divider { @apply w-[18px] h-[2px] bg-[#03c75a];}
+/* .divider { @apply w-[18px] h-[2px] bg-[#03c75a];} */
+
+
+.contact-grid { @apply grid grid-cols-4 gap-2; }
+.contact-item { @apply flex flex-col items-center gap-[6px] py-[14px] px-1 rounded-xl bg-white cursor-pointer no-underline; }
+.icon-circle { @apply w-[48px] h-[48px] rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center; }
+.icon-circle::before { @apply content-['']; }
+.icon-circle:hover{ background: linear-gradient(to top, rgb(3, 199, 90), rgb(84, 245, 156)); }
+.icon-circle i { @apply not-italic; }
+.contact-item span { @apply text-[11px] font-medium text-gray-500 whitespace-nowrap;}
 
